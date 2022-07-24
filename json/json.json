@@ -17,10 +17,10 @@
 		"prefix": "je",
 		"body": [
 			"{",
-			"\"person\" : {",
-				"\"name\": \"miguel\",",
-				"\"lastName\" : \"quintero\"",
-			"}",
+			"\t\"person\" : {",
+				"\t\t\"name\": \"miguel\",",
+				"\t\t\"lastName\" : \"quintero\"",
+			"\t}",
 			"}"
 		],
 		"description": "Person json"
