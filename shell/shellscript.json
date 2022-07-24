@@ -1,0 +1,80 @@
+{
+	// Place your snippets for shellscript here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"command.success-check": {
+		"prefix": [
+		  "command success check",
+		  "cmd success check"
+		],
+		"body": [
+		  "if ${1:command} >/dev/null 2>&1; then",
+		  "\techo \"succeed\"",
+		  "else",
+		  "\techo \"failed\"",
+		  "fi\n"
+		],
+		"description": "check if last command succeed"
+	  },
+	  "filesystem.directory-create": {
+		"prefix": "directory create",
+		"body": "mkdir \"${1:directory name}\"\n",
+		"description": "create directory"
+	  },
+	  "filesystem.file-delete": {
+		"prefix": [
+		  "file delete",
+		  "file remove"
+		],
+		"body": "rm -f ${1|/path/to/file,${pathToFile}|}\n",
+		"description": "delete file(s)"
+	  },
+	  "filesystem.file-search": {
+		"prefix": [
+		  "file search",
+		  "search in files",
+		  "find in files"
+		],
+		"body": "${1:result}=\\$(find \"${2|/path/to/search,${pathToSearch}|}\" -maxdepth ${3|1,2,3,4,5,6,7,8,9|} -type f -exec grep \"${4:criteria}\" {} +)\n",
+		"description": "find files which contain search criteria in given path and below"
+	  },
+	  "filesystem.file-write-multiline-sudo": {
+		"prefix": "file write multiline sudo",
+		"body": [
+		  "cat << EOF | sudo tee \"${1|/path/to/file,${filePath}|}\" >/dev/null",
+		  "${2:first line\nsecond line\n...}",
+		  "EOF\n"
+		],
+		"description": "write multiple lines into file when sudo permission is required"
+	  },
+	  "filesystem.if-directory-exists": {
+		"prefix": "if directory exists",
+		"body": [
+		  "if [ -d \"${1|/path/to/directory,${pathToDirectory}|}\" ]; then",
+		  "\t${2:echo \"directory \\\"${1}\\\" exists\"}",
+		  "fi\n"
+		],
+		"description": "check if a directory exists"
+	  },
+	  "http.download": {
+		"prefix": "http download",
+		"body": [
+		  "curl --request ${1|GET,POST|} -sL \\",
+		  "\t--user-agent '${2|Shellman,Your custom user agent|}' \\",
+		  "\t--output ${3|'/path/to/file',\"${pathToFile}\"|} \\",
+		  "\t--url ${4|'http://example.com/file.zip',\"${downloadUrl}\"|}\n"
+		],
+		"description": "download from url and save to /path/to/file, using curl"
+	  }
+}
